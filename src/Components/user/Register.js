@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-function Join() {
+function Register() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [pwd, setPwd] = useState("");
@@ -31,7 +31,7 @@ function Join() {
   /* 아이디 중복 체크 */
   const checkEmailDuplicate = async () => {
     await axios
-      .get("http://localhost:8989/user/checkId", { params: { email: email } })
+      .get("http://localhost:8080/user/checkId", { params: { email: email } })
       .then((resp) => {
         console.log("[Join.js] checkEmailDuplicate() success :D");
         console.log(resp.data);
@@ -56,17 +56,17 @@ function Join() {
     const req = {
       email: email,
       password: pwd,
-      passwordCheck: checkPwd,
-      username: name,
+      checkPassword: checkPwd,
+      userName: name,
     };
 
     await axios
-      .post("http://localhost:8989/user/register", req)
+      .post("http://localhost:8080/user/register", req)
       .then((resp) => {
         console.log("[Join.js] join() success :D");
         console.log(resp.data);
-
-        alert(resp.data.username + "님 회원가입을 축하드립니다 🎊");
+        const userName = resp.data?.email || resp.email || "사용자";
+        alert(`${userName}님 회원가입을 축하드립니다 🎊`);
         navigate("/login");
       })
       .catch((err) => {
@@ -151,4 +151,4 @@ function Join() {
   );
 }
 
-export default Join;
+export default Register;
