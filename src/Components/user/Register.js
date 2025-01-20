@@ -43,10 +43,9 @@ function Register() {
       .catch((err) => {
         console.log("[Join.js] checkEmailDuplicate() error :<");
         console.log(err);
-
         const resp = err.response;
-        if (resp.status === 400) {
-          alert(resp.data);
+        if (resp.status === 401) {
+          alert("이미사용중인 이메일입니다.");
         }
       });
   };
