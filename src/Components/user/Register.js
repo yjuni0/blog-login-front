@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-function Register() {
+function Join() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [pwd, setPwd] = useState("");
@@ -31,7 +31,7 @@ function Register() {
   /* 아이디 중복 체크 */
   const checkEmailDuplicate = async () => {
     await axios
-      .get("http://localhost:8080/user/checkId", { params: { email: email } })
+      .get("http://localhost:8989/user/checkId", { params: { email: email } })
       .then((resp) => {
         console.log("[Join.js] checkEmailDuplicate() success :D");
         console.log(resp.data);
@@ -43,9 +43,10 @@ function Register() {
       .catch((err) => {
         console.log("[Join.js] checkEmailDuplicate() error :<");
         console.log(err);
+
         const resp = err.response;
-        if (resp.status === 401) {
-          alert("이미사용중인 이메일입니다.");
+        if (resp.status === 400) {
+          alert(resp.data);
         }
       });
   };
@@ -60,12 +61,12 @@ function Register() {
     };
 
     await axios
-      .post("http://localhost:8080/user/register", req)
+      .post("http://localhost:8989/user/register", req)
       .then((resp) => {
         console.log("[Join.js] join() success :D");
         console.log(resp.data);
-        const userName = resp.data?.email || resp.email || "사용자";
-        alert(`${userName}님 회원가입을 축하드립니다 🎊`);
+
+        alert(resp.data.username + "님 회원가입을 축하드립니다 🎊");
         navigate("/login");
       })
       .catch((err) => {
@@ -150,4 +151,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Join;

@@ -8,8 +8,8 @@ function Logout() {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("bbs_access_token");
-    localStorage.removeItem("id");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("email");
 
     alert(auth + "님, 성공적으로 로그아웃 됐습니다 🔒");
     setAuth(null);
