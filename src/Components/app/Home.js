@@ -25,7 +25,7 @@ function Home() {
             <li>
               - &nbsp;
               <a
-                href="https://github.com/yjuni0"
+                href="https://github.com/yjuni0/blog-login"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -35,7 +35,7 @@ function Home() {
             <li>
               - &nbsp;
               <a
-                href="https://github.com/yjuni0"
+                href="https://github.com/yjuni0/blog-login-front"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -82,16 +82,9 @@ function BbsDetail() {
             <i className="fas fa-list"></i> 글목록
           </Link>{" "}
           &nbsp;
-          <Link
-            className="btn btn-outline-secondary"
-            to={{ pathname: `/bbsupdate/${bbs.boardId}` }}
-          >
-            <i className="fas fa-pen"></i> 수정
-          </Link>{" "}
-          &nbsp;
           {
             /* 자신이 작성한 게시글인 경우에만 수정, 삭제 가능 */
-            localStorage.getItem("userEmail") == bbs.writer ? (
+            localStorage.getItem("id") == bbs.writer ? (
               <>
                 <Link
                   className="btn btn-outline-secondary"
