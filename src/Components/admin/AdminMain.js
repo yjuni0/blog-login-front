@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import './AdminMain.css'; // 스타일 파일 (선택)
-
+import "../../css/adminMain.css";
 function AdminMain() {
   return (
     <div className="admin-main">

@@ -38,13 +38,13 @@ function Login() {
         console.log(resp.data);
         {
         }
-        alert(resp.data.email + "님, 성공적으로 로그인 되었습니다 🔐");
+        alert(resp.data.userName + "님, 성공적으로 로그인 되었습니다 🔐");
 
         // JWT 토큰 저장
         localStorage.setItem("accessToken", resp.data.accessToken);
-        localStorage.setItem("email", resp.data.email);
+        localStorage.setItem("id", resp.data.userName);
 
-        setAuth(resp.data.email); // 사용자 인증 정보(아이디 저장)
+        setAuth(resp.data.userName); // 사용자 인증 정보(아이디 저장)
         setHeaders({ Authorization: `Bearer ${resp.data.accessToken}` }); // 헤더 Authorization 필드 저장
 
         navigate("/bbslist");

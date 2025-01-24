@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 
-function MemberUpdate(props) {
+function UserUpdate(props) {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const [name, setName] = useState("");
   const [pwd, setPwd] = useState("");
@@ -45,14 +45,14 @@ function MemberUpdate(props) {
     await axios
       .post("http://localhost:8989/user/update", req, { headers: headers })
       .then((resp) => {
-        console.log("[MemberUpdate.js] update() success :D");
+        console.log("[UserUpdate.js] update() success :D");
         console.log(resp.data);
 
         alert(resp.data.username + "님의 회원 정보를 수정했습니다");
         navigate("/");
       })
       .catch((err) => {
-        console.log("[MemberUpdate.js] update() error :<");
+        console.log("[UserUpdate.js] update() error :<");
         console.log(err);
 
         const resp = err.response;
@@ -127,4 +127,4 @@ function MemberUpdate(props) {
   );
 }
 
-export default MemberUpdate;
+export default UserUpdate;

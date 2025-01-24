@@ -84,10 +84,10 @@ function BbsDetail() {
           &nbsp;
           <Link
             className="btn btn-outline-secondary"
-            to={{ pathname: `/bbsanswer/${bbs.boardId}` }}
+            to={{ pathname: `/bbsupdate/${bbs.boardId}` }}
             state={{ parentBbs: parentBbs }}
           >
-            <i className="fas fa-pen"></i> 답글쓰기
+            <i className="fas fa-pen"></i> 수정
           </Link>{" "}
           &nbsp;
           {
@@ -132,14 +132,6 @@ function BbsDetail() {
                 <span>{bbs.createdDate}</span>
               </td>
             </tr>
-
-            {/* <tr>
-					<th>조회수</th>
-					<td>
-					<span>{bbs.viewCount}</span>
-					</td>
-				</tr> */}
-
             <tr>
               <th>내용</th>
               <td></td>

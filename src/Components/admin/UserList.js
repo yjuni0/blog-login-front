@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Pagination from "react-js-pagination";
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
-
+import { Link } from "react-router";
+import "../../css/adminMain.css";
 const UserList = () => {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
 
@@ -52,9 +53,22 @@ const UserList = () => {
   };
 
   return (
-    <div>
-      <h1>사용자 목록</h1>
-      <table border="1" style={{ width: "100%", textAlign: "left" }}>
+    <div className="board-list-container">
+      {/* 사이드바 */}
+      <aside className="admin-sidebar">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/admin/userlist">유저 관리</Link>
+            </li>
+            <li>
+              <Link to="/admin/boardlist">게시글 관리</Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <h1 className="board-list-title">사용자 목록</h1>
+      <table className="board-list-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -66,7 +80,7 @@ const UserList = () => {
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.email}</td>
+              <td>{user.userEmail}</td>
               <td>{user.userName}</td>
             </tr>
           ))}

@@ -8,8 +8,16 @@ import AuthProvider from "./Components/context/AuthProvider";
 import HttpHeadersProvider from "./Components/context/HttpHeadersProvider";
 import "./css/style.css";
 import "./css/main.css";
+import axios from "axios";
 
 function App() {
+  axios.interceptors.request.use((config) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  });
   return (
     <div>
       <BrowserRouter>

@@ -1,9 +1,26 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode"; // jwt-decode 라이브러리 import
 
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
+
+  // 로컬 스토리지에서 토큰을 가져와서 디코딩하고 role을 확인
+  const token = localStorage.getItem("accessToken");
+  let userRole = null;
+
+  if (token) {
+    try {
+      // 토큰 디코딩
+      console.log(token);
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
+      userRole = decodedToken.roles; // 디코딩된 토큰에서 roles 추출
+    } catch (error) {
+      console.error("토큰 디코딩 오류:", error);
+    }
+  }
 
   return (
     <header>
@@ -49,9 +66,10 @@ function Header() {
                 <>
                   {/* 회원 정보 */}
                   <li className="nav-item">
-                      <Link className="nav-link" to="/checkpwd">
-                        <i className="fas fa-sign-out-alt"></i> {auth} 님 반갑습니다 <i className="fab fa-ello"></i>{" "} &nbsp;{" "}
-                      </Link>
+                    <Link className="nav-link" to="/checkpwd">
+                      <i className="fas fa-sign-out-alt"></i> {auth} 님
+                      반갑습니다 <i className="fab fa-ello"></i> &nbsp;{" "}
+                    </Link>
                   </li>
 
                   {/* 로그아웃 */}
@@ -60,6 +78,15 @@ function Header() {
                       <i className="fas fa-sign-out-alt"></i> 로그아웃
                     </Link>
                   </li>
+
+                  {/* 관리자 메뉴 - roles이 'ADMIN'인 경우에만 표시 */}
+                  {userRole === "ROLE_ADMIN" && (
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/admin">
+                        <i className="fas fa-cogs"></i> 관리자
+                      </Link>
+                    </li>
+                  )}
                 </>
               ) : (
                 <>

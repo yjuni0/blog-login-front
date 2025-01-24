@@ -1,0 +1,207 @@
+/* 관리자 페이지 스타일 */
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  position: relative; /* 사이드바가 fixed로 고정되어 있을 때의 레이아웃을 맞추기 위해 relative 설정 */
+}
+
+/* 헤더 스타일 */
+.admin-header {
+  background-color: #27313b;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* 사이드바 스타일 */
+.admin-sidebar {
+  width: 220px;
+  background-color: #27313b;
+  color: white;
+  padding: 20px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* 사이드바가 항상 다른 콘텐츠 위에 표시되도록 설정 */
+}
+
+/* 사이드바 링크 스타일 */
+.admin-sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-sidebar nav ul li {
+  margin-top: 50px;
+}
+
+.admin-sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.admin-sidebar nav ul li a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 메인 콘텐츠 영역 스타일 */
+.admin-content {
+  margin-left: 240px; /* 사이드바의 너비만큼 여백 추가 */
+  padding: 20px;
+  flex: 1;
+  background-color: #f8f9fa;
+  height: 100vh; /* 콘텐츠 영역이 전체 화면을 차지하도록 설정 */
+  overflow-y: auto; /* 스크롤 가능하게 설정 */
+}
+
+/* 섹션 스타일: 유저 리스트 및 게시글 리스트 */
+.admin-section {
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.admin-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #27313b;
+}
+
+/* 사용자 목록 페이지 스타일 (기존 스타일 추가) */
+.user-list-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.user-list-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #27313b;
+  font-size: 2rem;
+}
+
+/* 테이블 스타일 (기존 스타일 추가) */
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #27313b;
+  color: white;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* 페이징 스타일 (기존 스타일 추가) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  margin: 0 5px;
+}
+
+.pagination .page-link {
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: #27313b;
+}
+
+.pagination .page-link:hover {
+  background-color: #27313b;
+  color: white;
+  border-color: #27313b;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #27313b;
+  border-color: #27313b;
+  color: white;
+}
+
+.pagination .page-link:disabled {
+  background-color: #f1f1f1;
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination .page-link:focus {
+  outline: none;
+}
+
+/* 게시글 목록 페이지 스타일 (새로운 스타일) */
+.board-list-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.board-list-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #27313b;
+  font-size: 2rem;
+}
+
+.board-list-container table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.board-list-container table th,
+.board-list-container table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.board-list-container table th {
+  background-color: #27313b;
+  color: white;
+  font-weight: bold;
+}
+
+.board-list-container table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.board-list-container table tr:hover {
+  background-color: #f1f1f1;
+}
+.board-list-container table td a {
+  text-decoration: none;
+  color: inherit;
+}

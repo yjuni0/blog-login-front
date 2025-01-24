@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(localStorage.getItem("id"));
+  const [auth, setAuth] = useState(localStorage.getItem("userName"));
 
   const value = { auth, setAuth };
 

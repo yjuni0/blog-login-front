@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
-import MemberUpdate from "./MemberUpdate";
+import UserUpdate from "./UserUpdate";
 
 function CheckPwd() {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
@@ -42,14 +42,14 @@ function CheckPwd() {
         req,
         { headers: headers }
       );
-      console.log("[MemberUpdate.js] checkPwd() success :D");
+      console.log("[userUpdate.js] checkPwd() success :D");
       console.log(resp.data);
       setEmail(resp.data.email);
       setName(resp.data.userName);
 
       setShowMemberUpdate(true);
     } catch (err) {
-      console.log("[MemberUpdate.js] checkPwd() error :<");
+      console.log("[userUpdate.js] checkPwd() error :<");
       console.log(err);
 
       const resp = err.response;
@@ -62,7 +62,7 @@ function CheckPwd() {
   return (
     <div>
       {showMemberUpdate ? (
-        <MemberUpdate email={email} name={name} />
+        <UserUpdate email={email} name={name} />
       ) : (
         <>
           <table className="table">
