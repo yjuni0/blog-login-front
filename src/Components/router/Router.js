@@ -21,7 +21,7 @@ function Router() {
       <Route path="/bbslist" element={<BbsList />}></Route>
       <Route path="/bbswrite" element={<BbsWrite />}></Route>
       <Route path="/bbsdetail/:boardId" element={<BbsDetail />}></Route>
-      <Route path="/bbsupdate" element={<BbsUpdate />}></Route>
+      <Route path="/bbsupdate/:boardId" element={<BbsUpdate />}></Route>
 
       <Route path="/login" element={<Login />}></Route>
       <Route path="/join" element={<Join />}></Route>

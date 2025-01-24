@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { HttpHeadersContext } from "../context/HttpHeadersProvider";
@@ -7,14 +7,14 @@ import { HttpHeadersContext } from "../context/HttpHeadersProvider";
 import "../../css/bbsupdate.css";
 
 function BbsUpdate() {
+  const { boardId } = useParams();
+  const [bbs, setBbs] = useState({});
   const { headers, setHeaders } = useContext(HttpHeadersContext);
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const location = useLocation();
-  const { bbs } = location.state;
 
-  const boardId = bbs.boardId;
   const [title, setTitle] = useState(bbs.title);
   const [content, setContent] = useState(bbs.content);
   const [files, setFiles] = useState([]);
@@ -47,7 +47,8 @@ function BbsUpdate() {
     setHeaders({
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     });
-  }, []);
+    getBbsDetail();
+  }, [boardId]);
 
   // /* 파일 업로드 */
   // const fileUpload = async (boardId) => {
@@ -82,35 +83,32 @@ function BbsUpdate() {
   // 		console.error(error);
   // 	}
   // };
-
+  const getBbsDetail = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8989/board/${boardId}`
+      );
+      setBbs(response.data); // 해당 boardId에 맞는 게시글 정보 받아오기
+    } catch (error) {
+      console.log("[BbsUpdate.js] getBbsDetail() error :<");
+      console.error(error);
+    }
+  };
   /* 게시판 수정 */
   const updateBbs = async () => {
-    const req = {
-      id: auth,
-      title: title,
-      content: content,
-    };
-
-    await axios
-      .put(`http://localhost:8989/board/${bbs.boardId}/update`, req, {
-        headers: headers,
-      })
-      .then((resp) => {
-        console.log("[BbsUpdate.js] updateBbs() success :D");
-        console.log(resp.data);
-        const boardId = resp.data.boardId;
-        alert("게시글을 성공적으로 수정했습니다 :D");
-        navigate(`/bbsdetail/${resp.data.boardId}`);
-        // if (files.length > 0) {
-        //   fileUpload(boardId);
-        // } else {
-        //    // 새롭게 등록한 글 상세로 이동
-        // }
-      })
-      .catch((err) => {
-        console.log("[BbsUpdate.js] updateBbs() error :<");
-        console.log(err);
-      });
+    try {
+      const response = await axios.put(
+        `http://localhost:8989/board/${boardId}/update`,
+        bbs // 수정된 게시글 데이터
+      );
+      if (response.status === 200) {
+        alert("게시글이 수정되었습니다.");
+        navigate(`/bbsdetail/${boardId}`); // 수정 후 해당 게시글 상세 페이지로 리디렉션
+      }
+    } catch (error) {
+      console.log("[BbsUpdate.js] updateBbs() error :<");
+      console.error(error);
+    }
   };
 
   return (
@@ -135,7 +133,7 @@ function BbsUpdate() {
               <input
                 type="text"
                 className="form-control"
-                value={title}
+                value={bbs.title}
                 onChange={changeTitle}
                 size="50px"
               />
@@ -146,7 +144,7 @@ function BbsUpdate() {
             <td>
               <textarea
                 className="form-control"
-                value={content}
+                value={bbs.content}
                 onChange={changeContent}
                 rows="10"
               ></textarea>

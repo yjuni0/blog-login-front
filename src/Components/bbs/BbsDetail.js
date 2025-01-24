@@ -85,7 +85,6 @@ function BbsDetail() {
           <Link
             className="btn btn-outline-secondary"
             to={{ pathname: `/bbsupdate/${bbs.boardId}` }}
-            state={{ parentBbs: parentBbs }}
           >
             <i className="fas fa-pen"></i> 수정
           </Link>{" "}
@@ -145,12 +144,12 @@ function BbsDetail() {
         </div> */}
 
         {/* 댓글 리스트 컴포넌트 */}
-        {/* <CommentList boardId={boardId} /> */}
+        <CommentList boardId={boardId} />
 
         {/* 댓글 작성 컴포넌트 */}
-        {/* {auth ? ( // 로그인한 사용자만 댓글 작성 가능 */}
-        {/*  <CommentWrite boardId={boardId} /> */}
-        {/* ) : null} */}
+        {auth ? ( // 로그인한 사용자만 댓글 작성 가능
+          <CommentWrite boardId={boardId} />
+        ) : null}
       </div>
     </div>
   );
