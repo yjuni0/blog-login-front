@@ -11,7 +11,7 @@ function BbsWrite() {
   const { headers, setHeaders } = useContext(HttpHeadersContext);
 
   const navigate = useNavigate();
-
+  const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   // const [files, setFiles] = useState([]); // 추가: 파일 목록 상태 추가
@@ -93,7 +93,8 @@ function BbsWrite() {
     setHeaders({
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     });
-
+    const id = localStorage.getItem("id");
+    console.log("LocalStorage ID:", localStorage.getItem("id"));
     // 로그인한 사용자인지 체크
     if (!auth) {
       alert("로그인 한 사용자만 게시글을 작성할 수 있습니다 !");
@@ -109,9 +110,9 @@ function BbsWrite() {
             <th className="table-primary">작성자</th>
             <td>
               <input
+                placeholder={id}
                 type="text"
                 className="form-control"
-                value={localStorage.getItem("userEmail")}
                 size="50px"
                 readOnly
               />

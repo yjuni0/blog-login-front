@@ -1,15 +1,64 @@
-/* 파일 삭제 버튼 스타일링 */
-.delete-button {
-    background-color: #ff5f5f;
-    color: #fff;
-    border: none;
-    padding: 0px 2px 2px 2px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-bottom: 10px;
+/* BbsWrite.css */
+
+/* 기본 폼 스타일 */
+.table {
+    width: 100%;
+    margin-top: 20px;
 }
 
-.delete-button:hover {
-    background-color: #d43434;
+.table th {
+    background-color: #f8f9fa;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table td {
+    padding: 10px;
+}
+
+/* 작성자 입력 필드 스타일 */
+input.form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+input.form-control:read-only {
+    background-color: #f1f1f1;
+}
+
+/* 제목, 내용 입력 필드 */
+textarea.form-control,
+input[type="text"].form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* 등록 버튼 스타일 */
+button.btn-outline-secondary {
+    padding: 8px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-outline-secondary:hover {
+    background-color: #285e8e;
 }
